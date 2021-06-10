@@ -1,0 +1,20 @@
+
+<p>コメント件数：<%= book.post_comments.count %></p>
+<% book.post_comments.each do |post_comment| %>
+  
+    <%= post_comment.user.name %>
+  <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  
+    <% if post_comment.user == current_user %>
+  <div class="comment-delete">
+    <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), method: :delete, class: "btn btn-sm btn-danger" %>
+  </div>
+  <% end %>
+<% end %>
+
+<div class="new-comment">
+<%= form_with(model:[book, post_comment], remote: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>

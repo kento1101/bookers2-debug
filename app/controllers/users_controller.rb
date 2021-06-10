@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    today = Date.today
+    yesterday = today-1
+    @today_book = @books.where("created_at >= ?",today)
+    @yesterday_book = @books.where("created_at >= ?",yester)
   end
 
   def index
