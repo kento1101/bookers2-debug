@@ -12,6 +12,7 @@
   <% end %>
 <% end %>
 
+
 <div class="new-comment">
 <%= form_with(model:[book, post_comment], remote: true) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
